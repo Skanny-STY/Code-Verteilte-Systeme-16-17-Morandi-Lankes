@@ -349,7 +349,6 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			return;
 		}
 
-		// Warten auf naechste Nachricht
 		ChatPDU receivedPdu = null;
 
 		// Nach einer Minute wird geprueft, ob Client noch eingeloggt ist

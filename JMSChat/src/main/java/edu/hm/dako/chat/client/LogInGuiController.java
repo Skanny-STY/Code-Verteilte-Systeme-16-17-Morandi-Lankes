@@ -120,7 +120,7 @@ public class LogInGuiController implements Initializable {
 		try {
 			appController.getCommunicator().login(userName);
 		} catch (Exception e2) {
-
+			System.out.println(e2.toString());
 			// Benutzer mit dem angegebenen Namen schon angemeldet
 			log.error("Login konnte nicht zum Server gesendet werden, Server aktiv?");
 			appController.setErrorMessage("Chat-Client",
@@ -159,6 +159,6 @@ public class LogInGuiController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		comboServerType.getItems().addAll(SystemConstants.IMPL_TCP_SIMPLE,
-				SystemConstants.IMPL_TCP_ADVANCED);
+				SystemConstants.IMPL_JMS);
 	}
 }

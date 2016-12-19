@@ -9,6 +9,7 @@ import javax.jms.JMSContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import edu.hm.dako.chat.common.ChatPDU;
 
 /**
  * <p>This is a very simple example of a JMS producer.  This is a simplified version of the quickstarts
@@ -29,9 +30,9 @@ public class SimpleJmsProducer {
         // Make sure you create an application user in Wildfly that matches the 
         // username and password below.  Usually a bad practice to have passwords
         // in code, but this is just a simple example.
-        final Properties env = new Properties();
-        env.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
-        env.put(Context.PROVIDER_URL, System.getProperty(Context.PROVIDER_URL, PROVIDER_URL));
+        Properties env = new Properties();
+        env.put(Context.INITIAL_CONTEXT_FACTORY, "jms/RemoteConnectionFactory");
+        env.put(Context.PROVIDER_URL, System.getProperty(Context.PROVIDER_URL, "http-remoting://127.0.0.1:8080"));
         env.put(Context.SECURITY_PRINCIPAL, "guest");     // username
         env.put(Context.SECURITY_CREDENTIALS, "guest");   // password
         
@@ -46,7 +47,8 @@ public class SimpleJmsProducer {
 	        context = connectionFactory.createContext("guest", "guest"); // again, don't do this in production
 	        
 	        // Create a producer and send a message
-	        context.createProducer().send(destination, "This is my hello JMS message at " + new Date());  
+	        ChatPDU pdu = new ChatPDU(PduType.CHAT_MESSAGE_REQUEST, "f that shit");
+	        context.createProducer().send(destination,pdu);  
 	        System.out.println("Message sent.");
         } finally {
         	if (namingContext != null) {

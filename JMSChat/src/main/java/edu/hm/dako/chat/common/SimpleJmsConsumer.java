@@ -8,7 +8,7 @@ import javax.jms.JMSContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
+import edu.hm.dako.chat.common.ChatPDU;
 /**
  * <p>This is a very simple example of a JMS comsumer.  This is a simplified version of the quickstarts
  * provided by JBoss.</p>
@@ -46,8 +46,8 @@ public class SimpleJmsConsumer {
 	        
 	        // Read a message.  If nothing is there, this will return null
 	        JMSConsumer consumer = context.createConsumer(destination);
-	        String text = consumer.receiveBodyNoWait(String.class);
-	        System.out.println("Received message: " + text );
+	        ChatPDU text = consumer.receiveBody(ChatPDU.class);
+	        System.out.println("Received message: " + text.toString() );
         } finally {
         	if (namingContext != null) {
         		namingContext.close();
