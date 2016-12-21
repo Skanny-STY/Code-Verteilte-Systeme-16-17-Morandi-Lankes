@@ -2,6 +2,7 @@ edu/hm/dako/chat/common/DistributionMetrics.class
 jmsComm/MsgBean.class
 common/SystemConstants.class
 edu/hm/dako/chat/common/ExceptionHandler.class
+database/PersistEntityCount.class
 common/MemoryTest.class
 common/PduType.class
 jmsComm/Messagehandler.class
@@ -18,6 +19,7 @@ edu/hm/dako/chat/common/SystemConstants.class
 common/CpuUtilisationWatch.class
 edu/hm/dako/chat/common/SimpleJmsProducer.class
 common/DistributionMetrics.class
+database/EntityCount.class
 edu/hm/dako/chat/common/PduType.class
 common/ExceptionHandler.class
 edu/hm/dako/chat/common/MemoryTest.class
@@ -26,4 +28,5 @@ edu/hm/dako/chat/common/ImplementationType.class
 common/ClientListEntry.class
 edu/hm/dako/chat/common/TestNanoTime.class
 common/TestNanoTime.class
+database/EntityCount_.class
 edu/hm/dako/chat/common/SimpleJmsConsumer.class

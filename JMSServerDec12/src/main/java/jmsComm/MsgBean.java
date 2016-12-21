@@ -67,21 +67,21 @@ public class MsgBean implements MessageListener {
 				ChatPDU pduFromQueue = (ChatPDU) objectMessage.getObject();
 				System.out.println("folgenden Messagetyp aus Queue gelesen: \n" +pduFromQueue.getPduType());
 				
-		//markus 
+				//  Topiczeug und Messagehandling
+				connection = new TopicConnection(context, chatTopic);
+				Messagehandler msgHandler = new Messagehandler(connection);
+				msgHandler.handleMessage(pduFromQueue);
+		
+				/*		Datenbankzeug
 				entityCount.setUserName(pduFromQueue.getUserName() );
 				entityCount.setNumberOfReceivedConfirms(pduFromQueue.getNumberOfReceivedConfirms());
 				persistEntityCount.insertValues(entityCount);
-				/*		
 				
 				//entityTrace.setClientThreadName(pduFromQueue.getThreadName());
 				//entityTrace.setMessage(pduFromQueue.getMessage());
 				//entityTrace.setServerThreadName(pduFromQueue.getServerThreadName());
 				//persistTrace.insertValues(entitiyTrace);
 				
-				
-				connection = new TopicConnection(context, chatTopic);
-				Messagehandler msgHandler = new Messagehandler(connection);
-				msgHandler.handleMessage(pduFromQueue);
 			*/	
 				
 				//System.out.println("abgerufene Nachricht "+ pduFromQueue.toString());

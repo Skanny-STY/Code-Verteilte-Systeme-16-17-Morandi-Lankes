@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 	@SuppressWarnings("serial")
 	@Entity
-	@Table(name = "countTable")
+	@Table(name = "tabelleCount")
 	public class EntityCount implements Serializable {  // um nicht Klassennamen zu verwenden wird Tabellennamen definiert
 
 		@Id // Primärschlüssel
@@ -20,11 +20,10 @@ import javax.persistence.Table;
 		private int id;
 		
 	
-		@Column(name="userName")
+		// Name des Users
 		private String userName;
 		
-		// zaehlt erhaltene Confirms
-		@Column(name="numberOfReceivedConfirms")
+		// gezählte Confirms
 		private long numberOfReceivedConfirms;
 				
 		public int getId() {

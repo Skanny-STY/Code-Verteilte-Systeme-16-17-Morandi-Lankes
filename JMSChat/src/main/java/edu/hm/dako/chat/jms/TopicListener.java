@@ -14,6 +14,7 @@ public class TopicListener implements MessageListener {
 		try {
 			System.out.println("aus topic ausgelöst");
 			ChatPDU receivedPDU = (ChatPDU) ((ObjectMessage) message).getObject();
+			System.out.println(receivedPDU.getPduType());
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

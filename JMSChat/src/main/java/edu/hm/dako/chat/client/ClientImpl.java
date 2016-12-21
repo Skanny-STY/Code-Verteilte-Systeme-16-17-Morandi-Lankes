@@ -26,7 +26,7 @@ import edu.hm.dako.chat.common.PduType;
  */
 public class ClientImpl extends AbstractChatClient {
 
-	Connection connection ;
+	JMSConnection connection ;
 	/**
 	 * Konstruktor
 	 * 
@@ -63,7 +63,7 @@ public class ClientImpl extends AbstractChatClient {
 		Thread.currentThread().setName("Client");
 		threadName = Thread.currentThread().getName();
 		
-		connection = new JMSConnection("jms/queue/testqueue",providerIPAndPort);
+		connection = new JMSConnection(providerIPAndPort);
 
 		
 		try {
@@ -80,8 +80,8 @@ public class ClientImpl extends AbstractChatClient {
 //				//Advanced TCP Server einfügen
 //			}
 			
-			messageListenerThread.start();
 		} catch (Exception e) {
+			e.printStackTrace();
 			ExceptionHandler.logException(e);
 		}
 	}
@@ -100,6 +100,9 @@ public void login(String name) throws IOException {
 	try {
 		connection.send(requestPdu);
 		log.debug("Login-Request-PDU fuer Client " + userName + " an Server gesendet");
+		//Messagelistener scharf stellen
+		connection.setMessageListener();
+
 	} catch (Exception e) {
 		System.out.println("das ist die fehlernachricht " + e.toString());// extra line for testing. bitte löschen
 		throw new IOException();

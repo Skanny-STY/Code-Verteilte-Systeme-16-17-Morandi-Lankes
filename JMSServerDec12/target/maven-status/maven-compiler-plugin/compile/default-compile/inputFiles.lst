@@ -1,3 +1,4 @@
+/Users/jes00z/GitDec19/JMSServerDec12/src/main/java/database/PersistEntityCount.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/common/CpuUtilisationWatch.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/common/TestNanoTime.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/edu/hm/dako/chat/common/ChatPDU.java
@@ -9,12 +10,15 @@
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/edu/hm/dako/chat/common/ImplementationType.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/jmsComm/TopicConnection.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/common/ImplementationType.java
+/Users/jes00z/GitDec19/JMSServerDec12/src/main/java/database/EntitiyTrace.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/edu/hm/dako/chat/common/DistributionMetrics.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/common/ExceptionHandler.java
+/Users/jes00z/GitDec19/JMSServerDec12/src/main/java/database/PersistEntityTrace.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/jmsComm/MsgBean.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/common/SharedClientStatistics.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/common/ChatPDU.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/edu/hm/dako/chat/common/SimpleJmsConsumer.java
+/Users/jes00z/GitDec19/JMSServerDec12/src/main/java/database/EntityCount.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/edu/hm/dako/chat/common/ClientConversationStatus.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/edu/hm/dako/chat/common/PduType.java
 /Users/jes00z/GitDec19/JMSServerDec12/src/main/java/common/ClientConversationStatus.java

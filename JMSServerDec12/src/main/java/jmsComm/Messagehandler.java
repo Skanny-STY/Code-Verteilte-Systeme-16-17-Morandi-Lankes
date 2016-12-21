@@ -87,29 +87,29 @@ public class Messagehandler {
 			// passiert scho nix
 			e1.printStackTrace();
 		}
-		Vector<String> clientList2 = clients.getClientNameList();
-		for (String s : new Vector<String>(clientList2)) {
-
-			ClientListEntry client = clients.getClient(s);
-			System.out.println(client.getUserName());
-			try {
-
-				log.debug(
-						"Login- oder Logout-Event-PDU an " + client.getUserName() + " gesendet");
-				clients.incrNumberOfSentChatEvents(client.getUserName());
-				if(eventCounter != null){
-					eventCounter.getAndIncrement();
-				}
-				System.out.println("faack ju");
-				log.debug(s + ": EventCounter bei Login/Logout erhoeht = "
-						+ eventCounter.get() + ", ConfirmCounter = " + confirmCounter.get());
-			
-			} catch (Exception e) {
-				log.debug(
-						"Senden einer Login- oder Logout-Event-PDU an " + s + " nicht moeglich");
-				ExceptionHandler.logException(e);
-			}
-		}
+//		Vector<String> clientList2 = clients.getClientNameList();
+//		for (String s : new Vector<String>(clientList2)) {
+//
+//			ClientListEntry client = clients.getClient(s);
+//			System.out.println(client.getUserName());
+//			try {
+//
+//				log.debug(
+//						"Login- oder Logout-Event-PDU an " + client.getUserName() + " gesendet");
+//				clients.incrNumberOfSentChatEvents(client.getUserName());
+//				if(eventCounter != null){
+//					eventCounter.getAndIncrement();
+//				}
+//				System.out.println("faack ju");
+//				log.debug(s + ": EventCounter bei Login/Logout erhoeht = "
+//						+ eventCounter.get() + ", ConfirmCounter = " + confirmCounter.get());
+//			
+//			} catch (Exception e) {
+//				log.debug(
+//						"Senden einer Login- oder Logout-Event-PDU an " + s + " nicht moeglich");
+//				ExceptionHandler.logException(e);
+//			}
+//		}
 	}
 	
 	protected void loginRequestAction(ChatPDU receivedPdu) {

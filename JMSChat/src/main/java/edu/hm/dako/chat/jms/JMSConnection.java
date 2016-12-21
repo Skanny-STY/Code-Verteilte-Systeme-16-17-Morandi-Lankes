@@ -5,50 +5,58 @@ import java.util.Properties;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
+import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
 import javax.jms.Message;
+import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.jms.MessageListener;
+
 
 import edu.hm.dako.chat.connection.Connection;
 import edu.hm.dako.chat.connection.ConnectionTimeoutException;
+import edu.hm.dako.chat.jms.TopicListener;
 
 
-
-public class JMSConnection implements Connection, MessageListener{
+public class JMSConnection implements Connection{
 	
 	    private Context namingContext = null;
 	    private JMSContext context = null;
 	    private Properties env;
-	    private String queueDestination;
+	    private Destination queueDestination;
+	    private Destination topicDestination;
 	    private String providerIPAndPort;
-//	    private String chatTopic = ;
+	    private JMSConsumer consumer;
+	    private JMSProducer producer;
 	    
-	    public JMSConnection(String queueDestination, String providerUrlAndPort){
+	    public JMSConnection(String providerUrlAndPort){
 	    	
-	    	this.queueDestination = queueDestination;
 	    	this.providerIPAndPort = providerUrlAndPort;
     		this.env = new Properties();
-  //  		this.topic = 
+    		
 	    	
 	        env.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
 	        env.put(Context.PROVIDER_URL, "http-remoting://" + this.providerIPAndPort);
 	        env.put(Context.SECURITY_CREDENTIALS, "guest");   // password
 	        env.put(Context.SECURITY_PRINCIPAL, "guest");     // username
+	        
 	        try {
 	        	this.namingContext = new InitialContext(this.env);
 	      
 		        ConnectionFactory connectionFactory = (ConnectionFactory) namingContext.lookup("jms/RemoteConnectionFactory");      
+		        this.queueDestination = (Destination) namingContext.lookup("jms/queue/testqueue");
+		        this.topicDestination = (Destination) namingContext.lookup("jms/topic/chattopic");
 		        
-		        context = connectionFactory.createContext("guest", "guest"); 
-	//	        chatTopic = 
-		 //       Destination topic = (Destination) namingContext.lookup("jms/topic/chattopic");
-		 //       JMSConsumer consumer = context.createConsumer(topic);
-		 //       consumer.setMessageListener(new TopicListener());
-	        } catch(NamingException e){}
+		        context = connectionFactory.createContext("guest", "guest");
+		        this.producer = context.createProducer();
+		        this.consumer = context.createConsumer(topicDestination);
+	
+	        } catch(NamingException e){
+	        	e.printStackTrace();
+	        }
 	        
 	    }
 	        public void send(Serializable message) throws Exception{
@@ -56,17 +64,11 @@ public class JMSConnection implements Connection, MessageListener{
 	        	ObjectMessage objectMessage = context.createObjectMessage(message);
 		        try {
 			        // Create a producer and send a message
-			        Destination destination = (Destination) namingContext.lookup(this.queueDestination);
 			     //  message = (ObjectMessage) objectMessage;
-			        context.createProducer().send(destination,objectMessage);  
+			        producer.send(queueDestination,objectMessage);  
 			        System.out.println("Message sent : " + message.toString());
-		        } finally {
-		        	if (namingContext != null) {
-		        		namingContext.close();
-		        	}
-		        	if (context != null) {
-		        		context.close();
-		        	}
+		        } catch(Exception e){
+		        	e.printStackTrace();
 		        }
 	    
 	        }
@@ -85,9 +87,11 @@ public class JMSConnection implements Connection, MessageListener{
 				// TODO Auto-generated method stub
 				
 			}
-			@Override
-			public void onMessage(Message arg0) {
-//				context.createConsumer(a)
+			
+			public void setMessageListener() {
+				TopicListener topicListener = new TopicListener();
+				System.out.println(topicListener != null);
+				this.consumer.setMessageListener(topicListener);
 				
 			}
 			
