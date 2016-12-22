@@ -12,6 +12,6 @@ public class PersistEntityCount {
 	private EntityManager emCount;
 
 	public void insertValues(EntityCount entityCount) {
-		emCount.persist(entityCount);
+		emCount.merge(entityCount);
 	}
 }

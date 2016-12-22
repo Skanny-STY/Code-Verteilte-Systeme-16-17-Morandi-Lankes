@@ -11,7 +11,9 @@ import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
 import database.EntityCount;
+import database.EntityTrace;
 import database.PersistEntityCount;
+import database.PersistEntityTrace;
 import edu.hm.dako.chat.common.ChatPDU;
 
 @MessageDriven( activationConfig = 
@@ -36,16 +38,16 @@ public class MsgBean implements MessageListener {
 	
 	private TopicConnection topicConnection;
 
-//	@Inject
-//	PersistEntityTrace persistEntityTrace;
+	@Inject
+	PersistEntityTrace persistEntityTrace;
 	
 
-//	@Inject
-//	EntityTrace entityTrace;
+	@Inject
+	EntityTrace entityTrace;
 	
 	
 	
-	//private Connection connection = new WriteToTopicConnection(context, chatTopic);
+
 	
 	@Override
 	public void onMessage(Message message) {
@@ -57,17 +59,17 @@ public class MsgBean implements MessageListener {
 				ChatPDU pduFromQueue = (ChatPDU) objectMessage.getObject();
 				System.out.println("folgenden Messagetyp aus Queue gelesen: \n" +pduFromQueue.getPduType());
 				
-				/*
 				//Datenbankzeug
+				/*
 				entityCount.setUserName(pduFromQueue.getUserName() );
 				entityCount.setNumberOfReceivedConfirms(pduFromQueue.getNumberOfReceivedConfirms());
 				persistEntityCount.insertValues(entityCount);
+				 */	
 				
 				entityTrace.setUserName(pduFromQueue.getUserName());
 				entityTrace.setMessage(pduFromQueue.getMessage());
-				entityTrace.setUserName(pduFromQueue.getServerThreadName());
+			
 				persistEntityTrace.insertValues(entityTrace);
-				 */	
 				
 
 				//  Topiczeug und Messagehandling
