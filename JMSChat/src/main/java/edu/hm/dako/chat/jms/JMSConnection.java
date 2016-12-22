@@ -90,7 +90,6 @@ public class JMSConnection implements Connection{
 			
 			public void setMessageListener() {
 				TopicListener topicListener = new TopicListener();
-				System.out.println(topicListener != null);
 				this.consumer.setMessageListener(topicListener);
 				
 			}

@@ -4,14 +4,12 @@ import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.inject.Inject;
-import javax.jms.JMSConsumer;
+import javax.jms.Destination;
 import javax.jms.JMSContext;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
-import javax.jms.Topic;
 
-import common.Connection;
 import database.EntityCount;
 import database.PersistEntityCount;
 import edu.hm.dako.chat.common.ChatPDU;
@@ -28,30 +26,22 @@ public class MsgBean implements MessageListener {
 	@Inject JMSContext context;
 	
 	@Resource(mappedName = "java:jboss/exported/jms/topic/chattopic")
-    private Topic chatTopic;
-	private Connection connection;
-
-
-	JMSConsumer consumertest;
-	Message message;
-
+    private Destination chatTopic;
 	
-
 	@Inject 
-	PersistEntityCount persistEntityCount;
-	
-	
+	private PersistEntityCount persistEntityCount;
 
 	@Inject
-	EntityCount entityCount;
+	private EntityCount entityCount;
+	
+	private TopicConnection topicConnection;
+
+//	@Inject
+//	PersistEntityTrace persistEntityTrace;
 	
 
-	//@Inject
-	//PersistTrace persistTrace;
-	
-
-	//@Inject
-	//EntityTrace entityTrace;
+//	@Inject
+//	EntityTrace entityTrace;
 	
 	
 	
@@ -67,42 +57,26 @@ public class MsgBean implements MessageListener {
 				ChatPDU pduFromQueue = (ChatPDU) objectMessage.getObject();
 				System.out.println("folgenden Messagetyp aus Queue gelesen: \n" +pduFromQueue.getPduType());
 				
-				//  Topiczeug und Messagehandling
-				connection = new TopicConnection(context, chatTopic);
-				Messagehandler msgHandler = new Messagehandler(connection);
-				msgHandler.handleMessage(pduFromQueue);
-		
-				/*		Datenbankzeug
+				/*
+				//Datenbankzeug
 				entityCount.setUserName(pduFromQueue.getUserName() );
 				entityCount.setNumberOfReceivedConfirms(pduFromQueue.getNumberOfReceivedConfirms());
 				persistEntityCount.insertValues(entityCount);
 				
-				//entityTrace.setClientThreadName(pduFromQueue.getThreadName());
-				//entityTrace.setMessage(pduFromQueue.getMessage());
-				//entityTrace.setServerThreadName(pduFromQueue.getServerThreadName());
-				//persistTrace.insertValues(entitiyTrace);
+				entityTrace.setUserName(pduFromQueue.getUserName());
+				entityTrace.setMessage(pduFromQueue.getMessage());
+				entityTrace.setUserName(pduFromQueue.getServerThreadName());
+				persistEntityTrace.insertValues(entityTrace);
+				 */	
 				
-			*/	
+
+				//  Topiczeug und Messagehandling
+				topicConnection = new TopicConnection(context, chatTopic);
+				Messagehandler msgHandler = new Messagehandler(topicConnection);
+				msgHandler.handleMessage(pduFromQueue);
+		
 				
-				//System.out.println("abgerufene Nachricht "+ pduFromQueue.toString());
-				// Messagehandler.processMessage(pduFromQueue) -> return "pduToTopic"
-				// writeToTopic(pduToTopic)
-//				context.createProducer().send(chatTopic, objectMessage);
-				
-//				TEST__________________________________________
-				
-//				consumertest = context.createConsumer(chatTopic);
-				
-				
-//				ChatPDU pduFromTopic = context.createConsumer(chatTopic).receiveBody(ChatPDU.class);
-//				System.out.println(pduFromTopic);
-				
-//				context.createConsumer(chatTopic).receiveBody(ChatPDU.class);
-				
-				
-				
-				
-//				TEST_____________________________________________
+	
 				
 			} catch (Exception e) {
 				e.printStackTrace();

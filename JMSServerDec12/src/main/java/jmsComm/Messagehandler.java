@@ -33,8 +33,6 @@ public class Messagehandler {
 	
 	public void handleMessage(ChatPDU receivedPDU){
 	
-	receivedPDU.getPduType();
-	System.out.println("next!");
 	loginRequestAction(receivedPDU);
 			
 //		try {
@@ -87,6 +85,7 @@ public class Messagehandler {
 			// passiert scho nix
 			e1.printStackTrace();
 		}
+		//brauch ma nicht 
 //		Vector<String> clientList2 = clients.getClientNameList();
 //		for (String s : new Vector<String>(clientList2)) {
 //

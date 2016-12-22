@@ -7,13 +7,11 @@ import javax.persistence.PersistenceContextType;
 
 @Stateless
 public class PersistEntityCount {
-	
-	@PersistenceContext(unitName="tabelleCount" ,type=PersistenceContextType.TRANSACTION)
-	private EntityManager emc;
-	
+
+	@PersistenceContext(unitName = "tabelleCount", type = PersistenceContextType.TRANSACTION)
+	private EntityManager emCount;
 
 	public void insertValues(EntityCount entityCount) {
-		emc.persist(entityCount);
-		//emc.close();
-            }
+		emCount.persist(entityCount);
+	}
 }

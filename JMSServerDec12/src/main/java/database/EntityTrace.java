@@ -1,5 +1,6 @@
 //package database;
 //
+//
 //import javax.persistence.Column;
 //import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
@@ -7,9 +8,9 @@
 //import javax.persistence.Id;
 //
 //@SuppressWarnings("serial")
-//@Entity // markiert Klasse als Entit‰t
+//@Entity // markiert Klasse als Entitaet
 //
-//public class EntitiyTrace {
+//public class EntityTrace {
 //
 //	@Id // Primärschlüssel
 //	@GeneratedValue(strategy = GenerationType.IDENTITY) // Attribut automatisch

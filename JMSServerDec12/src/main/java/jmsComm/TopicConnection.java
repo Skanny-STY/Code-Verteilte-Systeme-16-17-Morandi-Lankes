@@ -13,9 +13,9 @@ import edu.hm.dako.chat.common.ChatPDU;
 
 public class TopicConnection implements Connection{
 	private JMSContext context;
-	private Topic topic; 
+	private Destination topic; 
 	
-	public TopicConnection(JMSContext context, Topic topic) {
+	public TopicConnection(JMSContext context, Destination topic) {
 		this.context = context;
 		this.topic = topic;
 	}

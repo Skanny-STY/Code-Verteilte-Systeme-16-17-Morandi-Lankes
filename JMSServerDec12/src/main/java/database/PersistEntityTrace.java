@@ -6,11 +6,11 @@
 //
 //public class PersistEntityTrace {
 //	@PersistenceContext(unitName="tabelleTrace",type=PersistenceContextType.TRANSACTION)
-//	private EntityManager emt;
+//	private EntityManager emTrace;
 //	
-//	// Daten in DB speichern
-//		public void addTraceValues(EntityTrace entityTrace) {
-//			emt.persist(entityTrace);
+//	// Daten aus entitiyobject in Tabelle eintragen
+//		public void insertValues(EntityTrace entityTrace) {
+//			emTrace.persist(entityTrace);
 //		}
 //}
 //
