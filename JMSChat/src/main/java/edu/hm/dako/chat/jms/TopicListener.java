@@ -20,6 +20,7 @@ public class TopicListener implements MessageListener {
 			System.out.println("aus topic ausgelöst");
 			ChatPDU receivedPDU = (ChatPDU) ((ObjectMessage) message).getObject();
 			PduType pduType = receivedPDU.getPduType();
+			System.out.println(pduType);
 			String offset = "Nachricht wird mit typ " + pduType.toString() + " für " +
 					receivedPDU.getUserName();
 			//Entscheidung ob Nachricht für den Empfänger bestimmt ist 
@@ -38,7 +39,6 @@ public class TopicListener implements MessageListener {
 				// TODO: PDU an Geschäftslogik übergeben
 				// nicht implementiert
 			}
-			System.out.println(receivedPDU.getPduType());
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,12 +12,12 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
-import common.PduType;
 import database.EntityCount;
 import database.EntityTrace;
 import database.PersistEntityCount;
 import database.PersistEntityTrace;
 import edu.hm.dako.chat.common.ChatPDU;
+import edu.hm.dako.chat.common.PduType;
 
 
 @MessageDriven( activationConfig = 
@@ -76,12 +76,16 @@ public class MsgBean implements MessageListener {
 				entityCount.setNumberOfReceivedConfirms(pduFromQueue.getNumberOfReceivedConfirms());
 				persistEntityCount.insertValues(entityCount);
 				
-				/*
 				
+				/*
 				//Operation in TraceDatenbank
-				entityTrace.setUserName(pduFromQueue.getUserName());
-				entityTrace.setMessage(pduFromQueue.getMessage());
-				persistEntityTrace.insertValues(entityTrace);
+				//
+				if(pduFromQueue.getPduType() == PduType.CHAT_MESSAGE_REQUEST){
+				}
+					entityTrace.setServerThreaName(pduFromQueue.getServerThreadName());
+					entityTrace.setClientThreadName(pduFromQueue.getClientThreadName());
+					entityTrace.setMessage(pduFromQueue.getMessage());
+					persistEntityTrace.insertValues(entityTrace);
 				 */	
 				
 

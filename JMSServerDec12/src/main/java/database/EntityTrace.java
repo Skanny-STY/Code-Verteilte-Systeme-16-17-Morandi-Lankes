@@ -1,14 +1,13 @@
 package database;
 
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
+
 @Entity // markiert Klasse als Entitaet
 @Table(name = "tabelleTrace")
 public class EntityTrace {
@@ -18,9 +17,12 @@ public class EntityTrace {
 														// bef¸llen
 	private int id;
 
-	// Name des Absenders
-	private String userName;
+	// Name des ClientThreads
+	private String ClientThreadName;
 
+	// Name des ServerThreads
+	private String ServerThreadName;
+	
 	// Chatnachricht
 	private String message;
 
@@ -32,12 +34,20 @@ public class EntityTrace {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getClientThreadName() {
+		return ClientThreadName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setClientThreadName(String clientThreadName) {
+		ClientThreadName = clientThreadName;
+	}
+
+	public String getServerThreaName() {
+		return ServerThreadName;
+	}
+
+	public void setServerThreaName(String serverThreaName) {
+		ServerThreadName = serverThreaName;
 	}
 
 	public String getMessage() {
