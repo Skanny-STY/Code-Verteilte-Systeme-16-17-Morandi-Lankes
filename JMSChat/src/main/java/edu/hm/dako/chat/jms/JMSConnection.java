@@ -9,16 +9,14 @@ import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
 import javax.jms.Message;
-import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-
+import edu.hm.dako.chat.common.ChatPDU;
 import edu.hm.dako.chat.connection.Connection;
 import edu.hm.dako.chat.connection.ConnectionTimeoutException;
-import edu.hm.dako.chat.jms.TopicListener;
 
 
 public class JMSConnection implements Connection{
@@ -31,6 +29,7 @@ public class JMSConnection implements Connection{
 	    private String providerIPAndPort;
 	    private JMSConsumer consumer;
 	    private JMSProducer producer;
+	    private String userName = null; 
 	    
 	    public JMSConnection(String providerUrlAndPort){
 	   
@@ -66,6 +65,15 @@ public class JMSConnection implements Connection{
 	        
 	    }
 	        public void send(Serializable message) throws Exception{
+	        	// Eigenen Usernamen auslesen und speichern,
+	        	// sodass er nachher für die Filterung der Nachrichten 
+	        	// aus dem Topic verfügbar ist. (siehe TopicListener)
+	        	if(userName == null){
+	        
+	        		ChatPDU toSendPDU = (ChatPDU) message;
+	        		userName = toSendPDU.getUserName();
+	        	}
+	        	
 	        	//mit PDU analoge ObjectMessage schaffen
 	        	ObjectMessage objectMessage = context.createObjectMessage(message);
 		        try {
@@ -99,7 +107,7 @@ public class JMSConnection implements Connection{
 			
 			public void setMessageListener() {
 				//Setzen des MessageListeners auf das Topic
-				TopicListener topicListener = new TopicListener();
+				TopicListener topicListener = new TopicListener(this.userName);
 				this.consumer.setMessageListener(topicListener);
 				
 			}
