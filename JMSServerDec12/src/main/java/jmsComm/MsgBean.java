@@ -57,13 +57,11 @@ public class MsgBean implements MessageListener {
 	public void onMessage(Message message) {
 				
 			try {
-				//Auslesen der Nachricht und um rückwandeln in eine PDU
+				//Auslesen der Nachricht und rückwandeln in eine PDU
+				
 				ObjectMessage objectMessage = (ObjectMessage) message;
 				ChatPDU pduFromQueue = (ChatPDU) objectMessage.getObject();
 				System.out.println("folgenden Messagetyp aus Queue gelesen: \n" +pduFromQueue.getPduType());
-				
-				
-				
 				
 				//Datenbankprozesse
 				
@@ -75,7 +73,6 @@ public class MsgBean implements MessageListener {
 				entityCount.setUserName(pduFromQueue.getUserName() );
 				entityCount.setNumberOfReceivedConfirms(pduFromQueue.getNumberOfReceivedConfirms());
 				persistEntityCount.insertValues(entityCount);
-				
 				
 				/*
 				//Operation in TraceDatenbank
