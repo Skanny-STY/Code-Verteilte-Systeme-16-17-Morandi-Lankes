@@ -282,7 +282,7 @@ public class BenchmarkingClientGuiFx2 extends Application
 
 		serverport = createLabel("Serverport");
 		inputPane.add(serverport, 9, 3);
-		textFieldServerport = createEditableTextfield(inputPane, 11, 3, "50000");
+		textFieldServerport = createEditableTextfield(inputPane, 11, 3, "8080");
 
 		serverIpAddress = createLabel("Server-IP-Adresse");
 		inputPane.add(serverIpAddress, 9, 5);
