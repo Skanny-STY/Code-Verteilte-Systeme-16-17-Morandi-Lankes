@@ -33,35 +33,35 @@ public class Messagehandler {
 	
 	public void handleMessage(ChatPDU receivedPDU){
 	
-	loginRequestAction(receivedPDU);
+	//loginRequestAction(receivedPDU);
 			
-//		try {
-//			switch (receivedPDU.getPduType()) {
-//	
-//			case LOGIN_REQUEST:
-//				// Login-Request vom Client empfangen
-//				loginRequestAction(receivedPDU);
-//				break;
-//	
-//			case CHAT_MESSAGE_REQUEST:
-//				// Chat-Nachricht angekommen, an alle verteilen
-//		//		chatMessageRequestAction(receivedPDU);
-//				break;
-//	
-//			case LOGOUT_REQUEST:
-//				// Logout-Request vom Client empfangen
-//		//		logoutRequestAction(receivedPDU);
-//				break;
-//	
-//			default:
-//				log.debug("Falsche PDU empfangen von Client: " + receivedPDU.getUserName()
-//						+ ", PduType: " + receivedPDU.getPduType());
-//				break;
-//			}
-//		} catch (Exception e) {
-//			log.error("Exception bei der Nachrichtenverarbeitung");
-//			ExceptionHandler.logExceptionAndTerminate(e);
-//		}
+		try {
+			switch (receivedPDU.getPduType()) {
+	
+			case LOGIN_REQUEST:
+				// Login-Request vom Client empfangen
+				loginRequestAction(receivedPDU);
+				break;
+	
+			case CHAT_MESSAGE_REQUEST:
+				// Chat-Nachricht angekommen, an alle verteilen
+		//		chatMessageRequestAction(receivedPDU);
+				break;
+	
+			case LOGOUT_REQUEST:
+				// Logout-Request vom Client empfangen
+		//		logoutRequestAction(receivedPDU);
+				break;
+	
+			default:
+				log.debug("Falsche PDU empfangen von Client: " + receivedPDU.getUserName()
+						+ ", PduType: " + receivedPDU.getPduType());
+				break;
+			}
+		} catch (Exception e) {
+			log.error("Exception bei der Nachrichtenverarbeitung");
+			ExceptionHandler.logExceptionAndTerminate(e);
+		}
 	}
 	
 	

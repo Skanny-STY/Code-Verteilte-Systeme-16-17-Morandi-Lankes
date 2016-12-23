@@ -22,6 +22,11 @@ public class TopicListener implements MessageListener {
 			PduType pduType = receivedPDU.getPduType();
 			String offset = "Nachricht wird mit typ " + pduType.toString() + " für " +
 					receivedPDU.getUserName();
+			//Entscheidung ob Nachricht für den Empfänger bestimmt ist 
+			//oder ob Sie nur autoamtisch durch das Topic auslesen auch
+			//bei ihm angekommen ist:
+			//wenn PDU from Typ ***_Response ist und der UserName nicht der des
+			//Empfängers ist wird die Nachricht ignoriert
 			if((pduType == PduType.LOGIN_RESPONSE || 
 				pduType == PduType.LOGOUT_RESPONSE || 
 				pduType == PduType.CHAT_MESSAGE_RESPONSE) && 
@@ -30,6 +35,8 @@ public class TopicListener implements MessageListener {
 				System.out.println(offset + " wird ignoriert");
 			} else {
 				System.out.println(offset + " wird zur Verarbeitung freigegeben");
+				// TODO: PDU an Geschäftslogik übergeben
+				// nicht implementiert
 			}
 			System.out.println(receivedPDU.getPduType());
 		} catch (JMSException e) {

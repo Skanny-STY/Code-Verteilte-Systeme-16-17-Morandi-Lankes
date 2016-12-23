@@ -34,10 +34,7 @@ public class TopicConnection implements Connection{
 
 	@Override
 	public void send(Serializable message) throws Exception {
-//		ObjectMessage objm = (ObjectMessage) message;
-//		ChatPDU tmpPDUCheck = (ChatPDU) objm;
-//		System.out.println("sending to topic " + tmpPDUCheck.toString());
-		//TODO hier mal nicht in Objectmessage umwandeln und dann mal kucken ob Message in Topic ankommt.
+		//
 		JMSProducer producer = context.createProducer();
 		ObjectMessage objectMessage = context.createObjectMessage(message);
 		producer.send(topic, objectMessage);
