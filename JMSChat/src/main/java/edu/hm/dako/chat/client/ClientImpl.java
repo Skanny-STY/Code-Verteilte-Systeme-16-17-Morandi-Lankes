@@ -8,13 +8,7 @@ import edu.hm.dako.chat.common.ClientConversationStatus;
 import edu.hm.dako.chat.common.ExceptionHandler;
 import edu.hm.dako.chat.common.PduType;
 import edu.hm.dako.chat.common.SystemConstants;
-import edu.hm.dako.chat.connection.*;
 import edu.hm.dako.chat.jms.JMSConnection;
-import org.apache.commons.logging.*;
-import edu.hm.dako.chat.common.ChatPDU;
-import edu.hm.dako.chat.common.ClientConversationStatus;
-import edu.hm.dako.chat.common.ExceptionHandler;
-import edu.hm.dako.chat.common.PduType;
 
 
 

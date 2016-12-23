@@ -67,15 +67,18 @@ public class MsgBean implements MessageListener {
 				
 				//Datenbankprozesse
 				
-				// vermutlich wegen fehlender XA-Transaktion ist es immer nur möglich 
-				// in eine, nicht aber in beide Datenbanken zu schreiben.
+				// vermutlich wegen fehlender XA-Transaktion ist es  
+		        // immer nur möglich während einem Durchlauf 
+		        // in eine, nicht aber in beide Datenbanken  zu schreiben. 
+		         
+		        //Operation für CountDatenbank 
 				entityCount.setUserName(pduFromQueue.getUserName() );
 				entityCount.setNumberOfReceivedConfirms(pduFromQueue.getNumberOfReceivedConfirms());
 				persistEntityCount.insertValues(entityCount);
 				
 				/*
 				
-				//Schreiben in TraceDatenbank
+				//Operation in TraceDatenbank
 				entityTrace.setUserName(pduFromQueue.getUserName());
 				entityTrace.setMessage(pduFromQueue.getMessage());
 				persistEntityTrace.insertValues(entityTrace);
