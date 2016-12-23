@@ -98,6 +98,7 @@ public void login(String name) throws IOException {
 	requestPdu.setClientThreadName(Thread.currentThread().getName());
 	requestPdu.setUserName(userName);
 	try {
+		//Senden 
 		connection.send(requestPdu);
 		log.debug("Login-Request-PDU fuer Client " + userName + " an Server gesendet");
 		//Messagelistener scharf stellen

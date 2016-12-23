@@ -4,11 +4,13 @@ common/SystemConstants.class
 edu/hm/dako/chat/common/ExceptionHandler.class
 database/PersistEntityCount.class
 common/MemoryTest.class
+database/EntityTrace.class
 common/PduType.class
 jmsComm/Messagehandler.class
 common/ImplementationType.class
 common/SharedChatClientList.class
 edu/hm/dako/chat/common/ChatPDU.class
+database/EntityTrace_.class
 common/ClientConversationStatus.class
 edu/hm/dako/chat/common/ClientListEntry.class
 jmsComm/TopicConnection.class
@@ -19,6 +21,7 @@ edu/hm/dako/chat/common/SystemConstants.class
 common/CpuUtilisationWatch.class
 edu/hm/dako/chat/common/SimpleJmsProducer.class
 common/DistributionMetrics.class
+database/PersistEntityTrace.class
 database/EntityCount.class
 edu/hm/dako/chat/common/PduType.class
 common/ExceptionHandler.class

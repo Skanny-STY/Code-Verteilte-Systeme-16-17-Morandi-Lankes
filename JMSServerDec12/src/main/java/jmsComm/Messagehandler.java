@@ -82,33 +82,8 @@ public class Messagehandler {
 			log.debug("Login- oder Logout-Event-PDU an topic gesendet");
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			// passiert scho nix
 			e1.printStackTrace();
 		}
-		//brauch ma nicht 
-//		Vector<String> clientList2 = clients.getClientNameList();
-//		for (String s : new Vector<String>(clientList2)) {
-//
-//			ClientListEntry client = clients.getClient(s);
-//			System.out.println(client.getUserName());
-//			try {
-//
-//				log.debug(
-//						"Login- oder Logout-Event-PDU an " + client.getUserName() + " gesendet");
-//				clients.incrNumberOfSentChatEvents(client.getUserName());
-//				if(eventCounter != null){
-//					eventCounter.getAndIncrement();
-//				}
-//				System.out.println("faack ju");
-//				log.debug(s + ": EventCounter bei Login/Logout erhoeht = "
-//						+ eventCounter.get() + ", ConfirmCounter = " + confirmCounter.get());
-//			
-//			} catch (Exception e) {
-//				log.debug(
-//						"Senden einer Login- oder Logout-Event-PDU an " + s + " nicht moeglich");
-//				ExceptionHandler.logException(e);
-//			}
-//		}
 	}
 	
 	protected void loginRequestAction(ChatPDU receivedPdu) {
@@ -125,23 +100,20 @@ public class Messagehandler {
 			clients.createClient(receivedPdu.getUserName(), client);
 			clients.changeClientStatus(receivedPdu.getUserName(),
 					ClientConversationStatus.REGISTERING);
-			log.debug("User " + receivedPdu.getUserName() + " nun in Clientliste");
+			System.out.println("User " + receivedPdu.getUserName() + " nun in Clientliste");
 
 			String userName = receivedPdu.getUserName();
-		//	clientThreadName = receivedPdu.getClientThreadName();
-			Thread.currentThread().setName(receivedPdu.getUserName());
 			log.debug("Laenge der Clientliste: " + clients.size());
-		//	serverGuiInterface.incrNumberOfLoggedInClients();
 			System.out.println(clients.getClient(receivedPdu.getUserName()));
-			// Login-Event an alle Clients (auch an den gerade aktuell
-			// anfragenden) senden
+			
+			
 			pdu = ChatPDU.createLoginEventPdu(userName, receivedPdu);
 			sendLoginListUpdateEvent(pdu);
 
-			// Login Response senden
 			ChatPDU responsePdu = ChatPDU.createLoginResponsePdu(userName, receivedPdu);
 
 			try {
+				// Login Response senden
 				connection.send(responsePdu);
 			} catch (Exception e) {
 				log.debug("Senden einer Login-Response-PDU an " + userName + " fehlgeschlagen");

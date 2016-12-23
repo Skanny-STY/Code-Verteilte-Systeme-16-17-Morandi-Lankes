@@ -53,26 +53,29 @@ public class MsgBean implements MessageListener {
 	public void onMessage(Message message) {
 				
 			try {
-//				String text = message.getBody(String.class);
-//				System.out.println(text);
+				//Auslesen der Nachricht und um rückwandeln in eine PDU
 				ObjectMessage objectMessage = (ObjectMessage) message;
 				ChatPDU pduFromQueue = (ChatPDU) objectMessage.getObject();
 				System.out.println("folgenden Messagetyp aus Queue gelesen: \n" +pduFromQueue.getPduType());
 				
-				//Datenbankzeug
-				/*
+				//Datenbankprozesse
+				
+				//Schreiben in CountDatenbank
 				entityCount.setUserName(pduFromQueue.getUserName() );
 				entityCount.setNumberOfReceivedConfirms(pduFromQueue.getNumberOfReceivedConfirms());
 				persistEntityCount.insertValues(entityCount);
-				 */	
 				
+				/*
+				
+				//Schreiben in TraceDatenbank
 				entityTrace.setUserName(pduFromQueue.getUserName());
 				entityTrace.setMessage(pduFromQueue.getMessage());
-			
 				persistEntityTrace.insertValues(entityTrace);
+				 */	
 				
 
-				//  Topiczeug und Messagehandling
+				//  Erzeugen von Topicconnection und 
+				//  Verarbeitung von eigehender Nachricht, samt Absenden von Antwortnachrichten
 				topicConnection = new TopicConnection(context, chatTopic);
 				Messagehandler msgHandler = new Messagehandler(topicConnection);
 				msgHandler.handleMessage(pduFromQueue);

@@ -28,7 +28,6 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 		</properties>
 	</persistence-unit>
-	<!-- 
 	<persistence-unit name="tabelleTrace"
 		transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/traceDB</jta-data-source>
@@ -43,5 +42,6 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 		</properties>
 	</persistence-unit>
+	<!-- 
 	 -->
 </persistence>
