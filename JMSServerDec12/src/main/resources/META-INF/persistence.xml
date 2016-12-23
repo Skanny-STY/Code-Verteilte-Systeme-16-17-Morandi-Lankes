@@ -21,7 +21,7 @@
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="url"
-				value="jdbc:mysql://localhost/count?createDatabaseIfNotExist=true"></property>
+				value="jdbc:mysql://localhost/countDB?createDatabaseIfNotExist=true"></property>
 			<property name="hibernate.archive.autodetection" value="PersistEntityCount" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true" />
@@ -35,7 +35,7 @@
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="url"
-				value="jdbc:mysql://localhost/trace?createDatabaseIfNotExist=true"></property>
+				value="jdbc:mysql://localhost/traceDB?createDatabaseIfNotExist=true"></property>
 			<property name="hibernate.archive.autodetection" value="PersistTrace" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true" />
